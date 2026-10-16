@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Recenzia prehrávača Player 9 pre Xbox: knižnica zo SMB/NAS, prehrávanie, titulky a hodnotenie 8/10.">
+<title>Recenzia Player 9</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: jeden stĺpec na čítanie ~65 znakov, snímky z konzoly presahujú do šírky, hodnotenie ako „ovládač“ panel */
+:root {
+  --bg: #0B1220;        /* Navy 950 */
+  --surface: #111A2E;
+  --surface2: #16203A;
+  --line: #2A3758;
+  --fg: #F1F5FB;
+  --fg2: #CBD5E1;
+  --muted: #94A3B8;
+  --accent: #38BDF8;    /* Sky 400 */
+  --accent-soft: #7DD3FC;
+  --good: #3DA83A;      /* tlačidlo A */
+  --bad: #E0393E;       /* tlačidlo B */
+  --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F6F8FB; --surface: #FFFFFF; --surface2: #EEF2F7; --line: #D5DCE6;
+    --fg: #0B1220; --fg2: #334155; --muted: #5B6B80;
+    --accent: #0369A1; --accent-soft: #0284C7; --good: #2E7D2C; --bad: #B91C1C;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #F6F8FB; --surface: #FFFFFF; --surface2: #EEF2F7; --line: #D5DCE6;
+  --fg: #0B1220; --fg2: #334155; --muted: #5B6B80;
+  --accent: #0369A1; --accent-soft: #0284C7; --good: #2E7D2C; --bad: #B91C1C;
+  color-scheme: light;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg2);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.page { max-width: 46rem; margin: 0 auto; padding-block: 3.5rem 5rem; display: flex; flex-direction: column; gap: 2.5rem; }
+
+header { display: flex; flex-direction: column; gap: 1rem; }
+.kicker {
+  font-family: var(--font-mono); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); display: flex; flex-wrap: wrap; gap: .4rem 1rem;
+}
+.kicker b { color: var(--accent); font-weight: 500; }
+h1 {
+  font-family: var(--font-display); font-weight: 800; color: var(--fg);
+  font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.05; letter-spacing: -.02em; margin: 0;
+  text-wrap: balance;
+}
+h1 .nine { color: var(--accent); }
+.lede { font-size: 1.3rem; line-height: 1.55; color: var(--fg); margin: 0; }
+
+h2 {
+  font-family: var(--font-display); font-weight: 700; color: var(--fg);
+  font-size: 1.45rem; line-height: 1.25; margin: 0 0 .75rem; text-wrap: balance;
+}
+section p { margin: 0 0 1rem; }
+section p:last-child { margin-bottom: 0; }
+code { font-family: var(--font-mono); font-size: .88em; color: var(--accent-soft); background: var(--surface2); padding: .05em .35em; border-radius: 4px; }
+
+figure { margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+figure img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+figcaption { font-family: var(--font-display); font-size: .85rem; color: var(--muted); }
+.wide { margin-inline: clamp(0rem, calc((100vw - 46rem) / -4), -6rem); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pair figure { min-width: 0; }
+@media (max-width: 640px) { .pair { grid-template-columns: 1fr; } .wide { margin-inline: 0; } }
+
+.cons { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .9rem; }
+.cons li { padding-left: 1.4rem; position: relative; }
+.cons li::before { content: ""; position: absolute; left: 0; top: .72em; width: .55rem; height: .55rem; border-radius: 50%; background: var(--bad); }
+.cons strong { color: var(--fg); font-weight: 600; }
+
+/* Hodnotenie */
+.verdict { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: clamp(1.25rem, 4vw, 2rem); display: flex; flex-direction: column; gap: 1.5rem; }
+.score-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1rem 2rem; }
+.score { font-family: var(--font-display); font-weight: 800; color: var(--fg); font-size: 4.5rem; line-height: .9; font-variant-numeric: tabular-nums; }
+.score small { font-size: 1.6rem; color: var(--muted); font-weight: 600; }
+.meter { display: flex; gap: 5px; flex: 1 1 14rem; min-width: 0; padding-bottom: .5rem; }
+.meter span { flex: 1; height: 10px; border-radius: 3px; background: var(--surface2); border: 1px solid var(--line); }
+.meter span.on { background: var(--accent); border-color: var(--accent); }
+.pc { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 640px) { .pc { grid-template-columns: 1fr; } }
+.pc h3 { font-family: var(--font-display); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 .6rem; display: flex; align-items: center; gap: .5rem; color: var(--fg); }
+.btn { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; color: #fff; font-family: var(--font-display); font-weight: 700; font-size: .8rem; letter-spacing: 0; }
+.btn.a { background: var(--good); } .btn.b { background: var(--bad); }
+.pc ul { margin: 0; padding-left: 1.1rem; font-size: 1rem; line-height: 1.55; display: flex; flex-direction: column; gap: .35rem; }
+
+.specs { font-family: var(--font-mono); font-size: .8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 1rem; display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; }
+.specs span b { color: var(--fg2); font-weight: 500; }
+footer { font-family: var(--font-display); font-size: .8rem; color: var(--muted); }
+</style>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+</head>
+<body>
+
+<main class="page">
+  <header>
+    <div class="kicker"><b>Recenzia</b><span>Xbox One · Series X|S</span><span>Cena: zadarmo</span></div>
+    <h1>Player <span class="nine">9</span>: domáca filmotéka konečne aj na Xboxe</h1>
+    <p class="lede">Kto má filmy, seriály a hudbu na NAS alebo na disku v počítači, na Xboxe doteraz veľa možností nemal. Player 9 sa pripojí priamo k zdieľanému priečinku a knižnicu si zostaví sám.</p>
+  </header>
+
+  <figure class="wide">
+    <img src="img/01-home.png" alt="Domovská obrazovka Player 9 s riadkom Pokračovať v sledovaní">
+    <figcaption>Domov: rozpozerané filmy a epizódy hneď navrchu</figcaption>
+  </figure>
+
+  <section>
+    <p>Aplikácie postavené na serveri Plex alebo Jellyfin chcú, aby ste si server nainštalovali a spravovali. Všeobecné prehrávače zas pôsobia ako správca súborov s tlačidlom Play. Player 9 ide inou cestou: žiadny server, len adresa priečinka a heslo.</p>
+  </section>
+
+  <section>
+    <h2>Prvé spustenie</h2>
+    <p>Sprievodca sa spýta, kde máte médiá. Na výber je zdieľaný priečinok cez SMB (verzie 1, 2 aj 3, teda Windows aj bežné NAS), DLNA/UPnP server, USB disk, stream alebo IPTV playlist. Zadáte adresu a heslo a aplikácia začne prechádzať priečinky.</p>
+    <p>Treba mať trochu trpezlivosti. Pri veľkej knižnici na pomalšom NAS trvá prvý prechod niekoľko minút. V našom teste to bolo približne 6 minút pre takmer 900 priečinkov. Ďalšie spustenia už len dopĺňajú zmeny.</p>
+  </section>
+
+  <section>
+    <h2>Knižnica, ktorá sa stará sama o seba</h2>
+    <p>Na Player 9 je najviac vidieť, čo všetko urobí bez vás. Súbory roztriedi na filmy, seriály, hudbu a fotky. Seriály rozpozná podľa označení ako <code>S01E02</code> alebo <code>1x02</code> v názve, takže epizódy sa zoradia do sérií aj vtedy, keď sú pomenované chaoticky.</p>
+    <p>Obaly berie z priečinkov. Keď tam nie sú, stiahne ich z internetu: hudbu z MusicBrainz a Deezer, filmy a seriály z TMDB. Pri TMDB však musíte zadať vlastný bezplatný kľúč, čo bežného používateľa môže odradiť.</p>
+    <p>Domovská obrazovka ponúka <em>Pokračovať v sledovaní</em> a po skončení epizódy sa sama spustí ďalšia. Pri seriáloch je to presne to, čo od takej aplikácie chcete.</p>
+  </section>
+
+  <figure class="wide">
+    <img src="img/02-movies.png" alt="Mriežka filmov s obalmi">
+    <figcaption>Filmy: obaly z priečinkov alebo z TMDB, plynulé aj pri vyše 800 tituloch</figcaption>
+  </figure>
+
+  <section>
+    <h2>Prehrávanie</h2>
+    <p>Prehrávanie zabezpečuje libVLC, takže s formátmi nie je problém: MKV, MP4, AVI, HEVC, H.264, DTS, AC3, FLAC. Rozbehli sa nám aj staré XviD súbory zo začiatku tisícročia.</p>
+    <p>Externé titulky <code>.srt</code> aplikácia nájde vedľa filmu aj v podpriečinku <code>Subs</code> a české a slovenské kódovanie rozpozná automaticky. Rozsypaný čaj namiesto diakritiky sme nevideli ani raz. Zvukovú stopu a titulky prepnete počas prehrávania a pri pretáčaní sa zobrazuje náhľad snímky.</p>
+    <p>Celá aplikácia je navrhnutá pre ovládač a televízor. Mriežky sa ovládajú D-padom, tlačidlo B vracia späť a farebné nápovede ukazujú, čo robí ktoré tlačidlo. Ani pri knižnici s vyše 800 filmami mriežka neseká.</p>
+  </section>
+
+  <div class="pair wide">
+    <figure>
+      <img src="img/03-player.png" alt="Prehrávač s ovládacím panelom">
+      <figcaption>Prehrávač s výberom zvuku a titulkov</figcaption>
+    </figure>
+    <figure>
+      <img src="img/05-movies-light.png" alt="Mriežka filmov vo svetlom režime">
+      <figcaption>Svetlý režim</figcaption>
+    </figure>
+  </div>
+
+  <section>
+    <h2>Dizajn a jazyky</h2>
+    <p>Vzhľad je čistý a tmavomodrý, so svetlým režimom a desiatimi farbami zvýraznenia. K dispozícii je 15 jazykov vrátane slovenčiny a češtiny, čo je pri aplikáciách pre Xbox stále zriedkavosť. Slovenská a česká verzia pôsobí prirodzene, kým pri ázijských jazykoch občas cítiť strojový preklad.</p>
+  </section>
+
+  <section>
+    <h2>Súkromie</h2>
+    <p>Knižnica, heslá aj nastavenia ostávajú v konzole. Aplikácia nemá účty, reklamy ani sledovanie. Na internet sa pripája, len keď sťahuje obaly.</p>
+  </section>
+
+  <section>
+    <h2>Kde to škrípe</h2>
+    <ul class="cons">
+      <li><strong>Rozmazané titulky pri SD videu.</strong> Pri starších súboroch s nízkym rozlíšením sa titulky vykreslia v rozlíšení videa a potom zväčšia. Pri 720p a vyššom rozlíšení sú ostré.</li>
+      <li><strong>Spiaci NAS.</strong> Ak sa disk musí najprv roztočiť, prvé otvorenie súboru trvá aj 10 sekúnd.</li>
+      <li><strong>TMDB vyžaduje vlastný kľúč.</strong> Bez neho ostanú filmy bez obalov z internetu, pokiaľ ich nemáte v priečinkoch.</li>
+    </ul>
+  </section>
+
+  <section class="verdict" aria-labelledby="verdikt">
+    <h2 id="verdikt" style="margin:0">Verdikt</h2>
+    <p style="margin:0">Player 9 nesľubuje všetko ako mediálne centrá so serverom, ale svoju úlohu robí dobre. Pripojíte NAS, chvíľu počkáte a máte usporiadanú filmotéku s obalmi, pokračovaním v sledovaní a titulkami, ktoré zobrazia slovenčinu správne. Kto nechce udržiavať server a chce len pustiť film z disku v počítači, lepšiu voľbu na Xboxe zatiaľ nenájde.</p>
+    <div class="score-row">
+      <div class="score" aria-label="Hodnotenie 8 z 10">8<small>/10</small></div>
+      <div class="meter" aria-hidden="true">
+        <span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="pc">
+      <div>
+        <h3><span class="btn a">A</span>Páči sa nám</h3>
+        <ul>
+          <li>netreba žiadny server</li>
+          <li>správne triedenie seriálov</li>
+          <li>slovenčina a české/slovenské titulky bez problémov</li>
+          <li>súkromie bez účtov a reklám</li>
+          <li>široká podpora formátov</li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="btn b">B</span>Prekáža nám</h3>
+        <ul>
+          <li>rozmazané titulky pri SD videu</li>
+          <li>pomalý štart zo spiaceho NAS</li>
+          <li>TMDB vyžaduje vlastný kľúč</li>
+        </ul>
+      </div>
+    </div>
+    <div class="specs">
+      <span><b>Platforma</b> Xbox One, Series X|S</span>
+      <span><b>Zdroje</b> SMB 1/2/3, DLNA, USB, HTTP/HLS, IPTV</span>
+      <span><b>Jazyky</b> 15</span>
+      <span><b>Cena</b> zadarmo, bez reklám</span>
+    </div>
+  </section>
+
+  <footer>Ukážkové videá na snímkach: Big Buck Bunny, Sintel, Tears of Steel (CC BY, Blender Foundation).</footer>
+</main>
+</body>
+</html>
